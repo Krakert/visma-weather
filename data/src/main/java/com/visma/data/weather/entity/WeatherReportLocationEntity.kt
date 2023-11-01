@@ -4,9 +4,9 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class WeatherReportLocationEntity(
-    val country: String,
-    val id: Int,
-    val sunrise: Int,
-    val sunset: Int,
-    val type: Int
+    val country: String?,
+    val id: Int?,
+    val sunrise: Int?,
+    val sunset: Int?,
+    val type: Int?
 )

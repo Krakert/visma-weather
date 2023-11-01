@@ -4,7 +4,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class WeatherReportWindEntity(
-    val deg: Int,
-    val gust: Double,
-    val speed: Double
+    val deg: Int?,
+    val gust: Double? = null,
+    val speed: Double?
 )
