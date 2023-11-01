@@ -3,6 +3,7 @@ package com.visma.data.weather.api
 import com.visma.data.component.net.model.ApiMethod
 import com.visma.data.component.net.model.ApiRequest
 import com.visma.data.component.net.model.Query
+import com.visma.data.weather.entity.WeatherForecastTodayEntity
 import com.visma.data.weather.entity.WeatherReportEntity
 
 object ApiCalls {
@@ -18,6 +19,22 @@ object ApiCalls {
             Query("q", city),
             Query("appid", apiKey),
             Query("units", unit),
+        )
+    )
+
+    fun getWeatherForecastTodayByCity(
+        city: String,
+        apiKey: String,
+        unit: String = "metric",
+        timestamps: Int = 12
+    ) = ApiRequest<WeatherForecastTodayEntity>(
+        method = ApiMethod.GET,
+        path = "forecast",
+        parameters = listOf(
+            Query("q", city),
+            Query("appid", apiKey),
+            Query("units", unit),
+            Query("cnt", timestamps),
         )
     )
 }
