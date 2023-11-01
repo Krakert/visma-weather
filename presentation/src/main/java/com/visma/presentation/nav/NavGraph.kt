@@ -22,10 +22,14 @@ fun NavGraph() {
                 )
             }
             composable(Screen.Forecast.route) {
-                WeatherForecastScreen(
-                    navController = navController,
-                    viewModel = hiltViewModel()
-                )
+                val result = navController.previousBackStackEntry?.savedStateHandle?.get<String>("City")
+                if (result != null) {
+                    WeatherForecastScreen(
+                        navController = navController,
+                        viewModel = hiltViewModel(),
+                        city = result,
+                    )
+                }
             }
         }
     }
