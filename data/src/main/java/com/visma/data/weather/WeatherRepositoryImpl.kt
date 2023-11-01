@@ -7,7 +7,7 @@ import com.visma.data.weather.api.ApiCalls
 import com.visma.data.weather.mapper.WeatherForecastTodayMapper
 import com.visma.data.weather.mapper.WeatherReportMapper
 import com.visma.domain.weather.WeatherRepository
-import com.visma.domain.weather.model.WeatherForecastToday
+import com.visma.domain.weather.model.WeatherForecast
 import com.visma.domain.weather.model.WeatherReport
 import com.visma.weather.data.BuildConfig
 import javax.inject.Inject
@@ -35,13 +35,13 @@ class WeatherRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun getForecastByCity(city: String): Result<WeatherForecastToday> {
+    override suspend fun getForecastByCity(city: String, cnt: Int): Result<WeatherForecast> {
         val response = Result.runCatching {
             api.request(
                 ApiCalls.getWeatherForecastTodayByCity(
                     city = city,
                     apiKey = BuildConfig.API_KEY,
-                    cnt = 8
+                    cnt = cnt
                 )
             )
         }.guard { return it }

@@ -25,7 +25,7 @@ import com.visma.presentation.theme.BlueDayForecastRow
 import com.visma.presentation.theme.LocalShapes
 import com.visma.presentation.theme.dimensions
 import com.visma.presentation.weather.overview.formatter.DegreeFormatter
-import com.visma.presentation.weather.overview.model.WeatherForecastTodayItemDisplay
+import com.visma.presentation.weather.overview.model.WeatherForecast24hItemDisplay
 
 @Composable
 fun WeatherDayForecastItem(time: String, icon: String, temp: String) {
@@ -83,22 +83,22 @@ fun PreviewWeatherDayForecastItem() {
 fun PreviewWeatherDayForecastRow() {
     WeatherDayForecastRow(
         listOf(
-            WeatherForecastTodayItemDisplay("9AM", "",  DegreeFormatter().map("16")),
-            WeatherForecastTodayItemDisplay("10AM", "", DegreeFormatter().map("17")),
-            WeatherForecastTodayItemDisplay("11AM", "", DegreeFormatter().map("18")),
-            WeatherForecastTodayItemDisplay("12AM", "", DegreeFormatter().map("19")),
-            WeatherForecastTodayItemDisplay("1PM", "", DegreeFormatter().map("22")),
-            WeatherForecastTodayItemDisplay("2PM", "", DegreeFormatter().map("21")),
-            WeatherForecastTodayItemDisplay("3PM", "", DegreeFormatter().map("18")),
-            WeatherForecastTodayItemDisplay("4PM", "", DegreeFormatter().map("16")),
-            WeatherForecastTodayItemDisplay("5PM", "", DegreeFormatter().map("15")),
-            WeatherForecastTodayItemDisplay("6PM", "", DegreeFormatter().map("13"))
+            WeatherForecast24hItemDisplay("9AM", "",  DegreeFormatter().map("16")),
+            WeatherForecast24hItemDisplay("10AM", "", DegreeFormatter().map("17")),
+            WeatherForecast24hItemDisplay("11AM", "", DegreeFormatter().map("18")),
+            WeatherForecast24hItemDisplay("12AM", "", DegreeFormatter().map("19")),
+            WeatherForecast24hItemDisplay("1PM", "", DegreeFormatter().map("22")),
+            WeatherForecast24hItemDisplay("2PM", "", DegreeFormatter().map("21")),
+            WeatherForecast24hItemDisplay("3PM", "", DegreeFormatter().map("18")),
+            WeatherForecast24hItemDisplay("4PM", "", DegreeFormatter().map("16")),
+            WeatherForecast24hItemDisplay("5PM", "", DegreeFormatter().map("15")),
+            WeatherForecast24hItemDisplay("6PM", "", DegreeFormatter().map("13"))
         )
     )
 }
 
 @Composable
-fun WeatherDayForecastRow(forecast: List<WeatherForecastTodayItemDisplay>) {
+fun WeatherDayForecastRow(forecast: List<WeatherForecast24hItemDisplay>) {
     LazyRow(
         modifier = Modifier.fillMaxWidth()
     ) {
