@@ -1,0 +1,52 @@
+plugins {
+    id 'com.android.library'
+    id 'com.google.dagger.hilt.android'
+    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+}
+
+android {
+    namespace 'com.visma.weather.presentation'
+    compileSdk Config.compileSdk
+
+    defaultConfig {
+        minSdk Config.minSdk
+        targetSdk Config.targetSdk
+    }
+
+    buildFeatures {
+        compose = true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion = Versions.composeCompiler
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+
+    kotlinOptions {
+        jvmTarget = '17'
+    }
+}
+
+dependencies {
+    implementation project(':domain')
+
+    implementation Deps.daggerHilt
+    kapt Deps.daggerHiltCompiler
+
+    implementation Deps.timber
+
+    // Compose
+    implementation Deps.composeRuntime
+    implementation Deps.composeMatertial3
+    implementation Deps.composeActivity
+    implementation Deps.composeIcons
+    implementation Deps.composePreview
+    implementation Deps.composeViewModel
+    implementation Deps.composeNavigation
+    implementation Deps.composeHiltNavigation
+
+}
