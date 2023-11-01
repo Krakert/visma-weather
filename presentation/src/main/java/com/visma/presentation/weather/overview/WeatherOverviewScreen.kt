@@ -3,12 +3,15 @@ package com.visma.presentation.weather.overview
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.material3.MaterialTheme
@@ -20,33 +23,34 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
-import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextRange
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
-import coil.compose.AsyncImage
-import coil.request.ImageRequest
 import com.visma.presentation.OnDisplay
 import com.visma.presentation.OnError
 import com.visma.presentation.OnLoading
-import com.visma.presentation.components.CenterElement
 import com.visma.presentation.extension.capitalize
+import com.visma.presentation.nav.Screen
 import com.visma.presentation.theme.Blue40
 import com.visma.presentation.theme.Blue80
+import com.visma.presentation.weather.overview.components.WeatherDayForecastRow
+import com.visma.presentation.weather.overview.components.WeatherOverviewSummary
+import com.visma.weather.presentation.R
 
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
 fun WeatherOverviewScreen(navController: NavHostController, viewModel: WeatherOverviewViewModel) {
 
     val contentTodayState by viewModel.weatherOverviewTodayContentState.collectAsState()
+    val contentForecast by viewModel.weatherOverviewForecastToday.collectAsState()
     val isLoading by viewModel.isLoading.collectAsState()
 
     var value by rememberSaveable { mutableStateOf("London") }
@@ -77,56 +81,61 @@ fun WeatherOverviewScreen(navController: NavHostController, viewModel: WeatherOv
                     textStyle = MaterialTheme.typography.displayLarge,
                     singleLine = true,
                     value = TextFieldValue(
-                        text = value,
-                        selection = TextRange(value.length)
+                        text = value, selection = TextRange(value.length)
                     ),
                     onValueChange = { newValue ->
                         value = newValue.text.trim().capitalize()
                     },
-                    keyboardActions = KeyboardActions(
-                        onDone = {
-                            viewModel.fetchWeatherOverview(value)
-                            focusManager.clearFocus(true)
-                            keyboardController?.hide()
-                        })
+                    keyboardActions = KeyboardActions(onDone = {
+                        viewModel.fetchWeatherOverview(value)
+                        viewModel.fetchWeatherForecast(value)
+                        focusManager.clearFocus(true)
+                        keyboardController?.hide()
+                    })
                 )
             }
-
+            Spacer(modifier = Modifier.height(100.dp))
 
             when (val state = contentTodayState) {
                 is OnDisplay -> {
-                    CenterElement {
-                        Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                            Text(text = "Today", style = MaterialTheme.typography.displayLarge)
-                            Row(
-                                verticalAlignment = Alignment.CenterVertically
-                            ) {
-                                AsyncImage(
-                                    model = ImageRequest.Builder(LocalContext.current)
-                                        .data(state.display.icon)
-                                        .build(),
-                                    contentDescription = "",
-                                    contentScale = ContentScale.Crop,
-                                    modifier = Modifier.size(100.dp)
-                                )
-                                Text(
-                                    text = state.display.temperature,
-                                    style = MaterialTheme.typography.bodyLarge
-                                )
-                            }
-
-                            Text(text = state.display.description, style = MaterialTheme.typography.labelSmall)
-                        }
-                    }
+                    WeatherOverviewSummary(
+                        icon = state.display.icon,
+                        temp = state.display.temperature,
+                        desc = state.display.description
+                    )
                 }
-
                 is OnError -> {
                     TODO()
                 }
-
                 OnLoading -> {
                     Text(text = "Loading")
                 }
+            }
+            Spacer(modifier = Modifier.height(75.dp))
+            Row(
+                modifier = Modifier
+                    .padding(start = 54.dp, end = 32.dp)
+                    .fillMaxWidth(),
+                horizontalArrangement = Arrangement.Start
+            ) {
+                Text(
+                    modifier = Modifier.padding(end = 16.dp),
+                    text = stringResource(R.string.txt_forecast),
+                    style = MaterialTheme.typography.labelSmall.copy(Color.White)
+                )
+                Text(
+                    modifier = Modifier.clickable {
+                        navController.navigate(Screen.Forecast.route)
+                    }, text = stringResource(R.string.txt_upcoming_days), style = MaterialTheme.typography.labelSmall
+                )
+            }
+            Spacer(modifier = Modifier.height(32.dp))
+            when (val state = contentForecast) {
+                is OnDisplay -> {
+                    WeatherDayForecastRow(forecast = state.display.result)
+                }
+                is OnError -> {}
+                OnLoading -> {}
             }
         }
 
