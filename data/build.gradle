@@ -3,6 +3,7 @@ plugins {
     id 'com.google.dagger.hilt.android'
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
+    id 'org.jetbrains.kotlin.plugin.serialization'
 }
 
 android {
@@ -37,4 +38,12 @@ dependencies {
     implementation Deps.daggerHilt
     kapt Deps.daggerHiltCompiler
 
+    implementation Deps.ktorCore
+    implementation Deps.ktorClient
+    implementation Deps.ktorJvm
+    implementation Deps.ktorNeogotiation
+    implementation Deps.ktorSerialization
+    implementation Deps.ktorJson
+    implementation Deps.ktorLogging
+    implementation Deps.timber
 }
