@@ -10,11 +10,17 @@ android {
     namespace 'com.visma.weather.data'
     compileSdk Config.compileSdk
 
+
     defaultConfig {
         minSdk Config.minSdk
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
+
+        Properties properties = new Properties()
+        properties.load(project.rootProject.file('local.properties').newDataInputStream())
+
+        buildConfigField "String", "API_KEY", "\"${properties.getProperty('API_KEY')}\""
     }
 
     buildTypes {
@@ -46,4 +52,5 @@ dependencies {
     implementation Deps.ktorJson
     implementation Deps.ktorLogging
     implementation Deps.timber
+    implementation Deps.napier
 }

@@ -4,11 +4,12 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import io.github.aakira.napier.DebugAntilog
+import io.github.aakira.napier.Napier
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.android.Android
 import io.ktor.client.plugins.HttpCallValidator
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
-import io.ktor.client.plugins.logging.DEFAULT
 import io.ktor.client.plugins.logging.LogLevel
 import io.ktor.client.plugins.logging.Logger
 import io.ktor.client.plugins.logging.Logging
@@ -36,8 +37,12 @@ object NetworkModule {
             )
         }
         install(Logging) {
-            logger = Logger.DEFAULT
+            logger = object : Logger {
+                override fun log(message: String) {
+                    Napier.d(message, tag = "HTTP Client")
+                }
+            }
             level = LogLevel.BODY
-        }
+        }.also { Napier.base(DebugAntilog()) }
     }
 }
