@@ -13,6 +13,7 @@ import com.visma.presentation.weather.overview.mapper.WeatherOverviewForecastDis
 import com.visma.presentation.weather.overview.model.WeatherForecast24hDisplay
 import com.visma.presentation.weather.overview.model.WeatherOverviewDisplay
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
@@ -39,23 +40,30 @@ class WeatherOverviewViewModel @Inject constructor(
     val isLoading: StateFlow<Boolean> = mutableIsLoading
 
     init {
-        fetchWeatherOverview("London")
-        fetchWeatherForecast("London")
+        loadData("London")
     }
 
-    fun fetchWeatherOverview(city: String) {
+    fun loadData(city: String) {
         viewModelScope.launch {
             mutableIsLoading.emit(true)
+            fetchWeatherOverview(city)
+            fetchWeatherForecast(city)
+            delay(1000)
+            mutableIsLoading.emit(false)
+        }
+    }
+
+    private fun fetchWeatherOverview(city: String) {
+        viewModelScope.launch {
             getWeatherByCity(city).onSuccess {
                 mutableTodayFlow.emit(
                     OnDisplay(weatherOverviewDisplayMapper.map(it))
                 )
-                mutableIsLoading.emit(false)
             }.onFailure { mutableTodayFlow.emit(OnError(it)) }
         }
     }
 
-    fun fetchWeatherForecast(city: String) {
+    private fun fetchWeatherForecast(city: String) {
         viewModelScope.launch {
             getForecastByCity(city, 8).onSuccess {
                 mutableForecastFlow.emit(
