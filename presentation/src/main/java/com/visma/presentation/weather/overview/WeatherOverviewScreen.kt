@@ -8,7 +8,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -67,8 +66,7 @@ fun WeatherOverviewScreen(navController: NavHostController, viewModel: WeatherOv
             WeatherSearchBar(text = textInput,
                 onValueChange = { textInput = it },
                 onDone = {
-                    viewModel.fetchWeatherOverview(textInput)
-                    viewModel.fetchWeatherForecast(textInput)
+                    viewModel.loadData(textInput)
                     focusManager.clearFocus(true)
                     keyboardController?.hide()
                 }
@@ -78,26 +76,23 @@ fun WeatherOverviewScreen(navController: NavHostController, viewModel: WeatherOv
             when (val state = contentTodayState) {
                 is OnDisplay -> {
                     WeatherOverviewSummary(
+                        isLoading = isLoading,
                         icon = state.display.icon,
                         temp = state.display.temperature,
                         desc = state.display.description
                     )
                 }
 
-                is OnError -> {
-                    TODO()
-                }
-
-                OnLoading -> {
-                    Text(text = "Loading")
-                }
+                is OnError -> {}
+                OnLoading -> {}
             }
             Spacer(modifier = Modifier.height(75.dp))
             // Navigate to other forecast
-            WeatherOverviewTextRow {
+            WeatherOverviewTextRow(
+                isLoading = isLoading
+            ) {
                 navController.currentBackStackEntry?.savedStateHandle?.set(
-                    key = "City",
-                    value = textInput
+                    key = "City", value = textInput
                 )
                 navController.navigate(Screen.Forecast.route)
             }
@@ -105,7 +100,9 @@ fun WeatherOverviewScreen(navController: NavHostController, viewModel: WeatherOv
             // Forecast of upcoming hours
             when (val state = contentForecast) {
                 is OnDisplay -> {
-                    WeatherDayForecastRow(forecast = state.display.result)
+                    WeatherDayForecastRow(
+                        isLoading = isLoading,
+                        forecast = state.display.result)
                 }
 
                 is OnError -> {}
