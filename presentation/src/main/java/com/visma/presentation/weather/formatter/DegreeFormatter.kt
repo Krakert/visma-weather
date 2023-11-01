@@ -1,4 +1,4 @@
-package com.visma.presentation.weather.overview.formatter
+package com.visma.presentation.weather.formatter
 
 import javax.inject.Inject
 
