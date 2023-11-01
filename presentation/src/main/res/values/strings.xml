@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Visma Weather App</string>
-    <string name="txt_forecast">Forecast</string>
-    <string name="txt_upcoming_days"><![CDATA[Next 7 Days ->]]></string>
+    <string name="txt_forecast">Forecast next 24H</string>
+    <string name="txt_upcoming_days"><![CDATA[Next 5 Days ->]]></string>
     <string name="txt_today">Today</string>
 </resources>

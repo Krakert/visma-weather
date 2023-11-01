@@ -35,12 +35,13 @@ class WeatherRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun getForecastTodayByCity(city: String): Result<WeatherForecastToday> {
+    override suspend fun getForecastByCity(city: String): Result<WeatherForecastToday> {
         val response = Result.runCatching {
             api.request(
                 ApiCalls.getWeatherForecastTodayByCity(
                     city = city,
                     apiKey = BuildConfig.API_KEY,
+                    cnt = 8
                 )
             )
         }.guard { return it }

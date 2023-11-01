@@ -2,7 +2,7 @@ package com.visma.presentation.weather.overview
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.visma.domain.weather.GetForecastTodayByCity
+import com.visma.domain.weather.GetForecastByCity
 import com.visma.domain.weather.GetWeatherByCity
 import com.visma.presentation.ContentState
 import com.visma.presentation.OnDisplay
@@ -21,7 +21,7 @@ import javax.inject.Inject
 @HiltViewModel
 class WeatherOverviewViewModel @Inject constructor(
     private val getWeatherByCity: GetWeatherByCity,
-    private val getForecastTodayByCity: GetForecastTodayByCity,
+    private val getForecastTodayByCity: GetForecastByCity,
     private val weatherOverviewDisplayMapper: WeatherOverviewDisplayMapper,
     private val weatherOverviewForecastDisplayMapper: WeatherOverviewForecastDisplayMapper,
 ) : ViewModel() {

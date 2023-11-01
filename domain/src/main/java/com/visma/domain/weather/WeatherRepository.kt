@@ -6,5 +6,5 @@ import com.visma.domain.weather.model.WeatherReport
 interface WeatherRepository {
 
     suspend fun getWeatherByCity(city: String): Result<WeatherReport>
-    suspend fun getForecastTodayByCity(city: String): Result<WeatherForecastToday>
+    suspend fun getForecastByCity(city: String): Result<WeatherForecastToday>
 }

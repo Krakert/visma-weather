@@ -26,7 +26,7 @@ object ApiCalls {
         city: String,
         apiKey: String,
         unit: String = "metric",
-        timestamps: Int = 12
+        cnt: Int = 40
     ) = ApiRequest<WeatherForecastTodayEntity>(
         method = ApiMethod.GET,
         path = "forecast",
@@ -34,7 +34,7 @@ object ApiCalls {
             Query("q", city),
             Query("appid", apiKey),
             Query("units", unit),
-            Query("cnt", timestamps),
+            Query("cnt", cnt),
         )
     )
 }
