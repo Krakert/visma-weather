@@ -42,13 +42,19 @@ val Typography = Typography(
     bodyLarge = TextStyle(
         fontFamily = LinikSans,
         fontWeight = FontWeight.Black,
-        fontSize = 48.sp,
+        fontSize = 62.sp,
+        color = Color.White
+    ),
+    bodyMedium = TextStyle(
+        fontFamily = LinikSans,
+        fontWeight = FontWeight.Medium,
+        fontSize = 24.sp,
         color = Color.White
     ),
     labelSmall = TextStyle(
         fontFamily = LinikSans,
         fontWeight = FontWeight.Medium,
         fontSize = 18.sp,
-        color = Color.White.copy(alpha = 0.8F)
-    )
+        color = Color.White.copy(alpha = 0.6F)
+    ),
 )

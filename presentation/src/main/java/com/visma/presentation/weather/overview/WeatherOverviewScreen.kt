@@ -39,8 +39,8 @@ import com.visma.presentation.OnError
 import com.visma.presentation.OnLoading
 import com.visma.presentation.extension.capitalize
 import com.visma.presentation.nav.Screen
-import com.visma.presentation.theme.Blue40
-import com.visma.presentation.theme.Blue80
+import com.visma.presentation.theme.BlueGradientBottom
+import com.visma.presentation.theme.BlueGradientTop
 import com.visma.presentation.weather.overview.components.WeatherDayForecastRow
 import com.visma.presentation.weather.overview.components.WeatherOverviewSummary
 import com.visma.weather.presentation.R
@@ -63,7 +63,7 @@ fun WeatherOverviewScreen(navController: NavHostController, viewModel: WeatherOv
             .fillMaxSize()
             .background(
                 brush = Brush.verticalGradient(
-                    colors = listOf(Blue80, Blue40)
+                    colors = listOf(BlueGradientTop, BlueGradientBottom)
                 )
             )
             .clickable(

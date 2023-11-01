@@ -12,7 +12,7 @@ val Shapes = Shapes(
 )
 
 data class CustomShapes(
-    val bottomBarButton: RoundedCornerShape = RoundedCornerShape(20.dp)
+    val forecastRowShape: RoundedCornerShape = RoundedCornerShape(24.dp)
 )
 
 val LocalShapes = staticCompositionLocalOf { CustomShapes() }
