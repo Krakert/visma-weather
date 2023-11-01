@@ -1,7 +1,7 @@
 package com.visma.presentation.weather.overview.mapper
 
 import com.visma.domain.weather.model.WeatherReport
-import com.visma.presentation.weather.overview.formatter.DegreeFormatter
+import com.visma.presentation.weather.formatter.DegreeFormatter
 import com.visma.presentation.weather.overview.model.WeatherOverviewDisplay
 import javax.inject.Inject
 import kotlin.math.roundToInt
