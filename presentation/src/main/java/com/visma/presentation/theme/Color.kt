@@ -13,3 +13,5 @@ val BlueGradientTop = Color(0xFF336CEE) // Start color
 val BlueGradientBottom = Color(0xFF719DFE)  // End color
 val BlueDayForecastItem = Color(0XFF3F76F2)
 val BlueDayForecastRow = Color(0XFF75A0FF)
+val BlackForecastScreen = Color(0XFF03051D)
+val GreyForecastScreen =Color(0XFFABABAB)

@@ -14,11 +14,11 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.visma.presentation.theme.BlackForecastScreen
+import com.visma.presentation.theme.GreyForecastScreen
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -41,7 +41,7 @@ fun WeatherForecastScreen(
             onClick = { navController.navigateUp() }) {
             Icon(
                 imageVector = Icons.Filled.ArrowBack,
-                tint = Color(0XFFababab),
+                tint = GreyForecastScreen,
                 contentDescription = "Back",
                 modifier = Modifier
                     .size(32.dp)
