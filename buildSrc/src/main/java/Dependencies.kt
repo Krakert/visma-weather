@@ -50,7 +50,7 @@ object Deps {
     const val coroutinesAndroid = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.kotlinCoroutines}"
 
     // Compose to load images via coil
-    const val composeCoil = "io.coil-kt:coil:${Versions.coil}"
+    const val composeCoil = "io.coil-kt:coil-compose:${Versions.coil}"
 
     // Share preference
     const val preference = "androidx.preference:preference:1.2.0"

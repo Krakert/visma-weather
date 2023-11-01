@@ -48,5 +48,6 @@ dependencies {
     implementation Deps.composeViewModel
     implementation Deps.composeNavigation
     implementation Deps.composeHiltNavigation
+    implementation Deps.composeCoil
 
 }
