@@ -3,6 +3,7 @@
 A small weather app powered by the OpenWeather API.\
 Desgin based on: [Weather App by Chris Iwan](https://dribbble.com/shots/7106462-Weather-App)
 
+Developed on a Pixel 7 Pro API 33
 
 ## Build with
 - Kotlin
