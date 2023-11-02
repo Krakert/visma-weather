@@ -22,13 +22,13 @@ import androidx.navigation.NavHostController
 import com.visma.presentation.OnDisplay
 import com.visma.presentation.OnError
 import com.visma.presentation.OnLoading
+import com.visma.presentation.components.WeatherForecastRow
 import com.visma.presentation.extension.shimmerEffect
 import com.visma.presentation.theme.BlueGradientBottom
 import com.visma.presentation.theme.BlueGradientTop
 import com.visma.presentation.theme.LocalDimensions
 import com.visma.presentation.theme.dimensions
 import com.visma.presentation.weather.forecast.components.WeatherForecastTopBar
-import com.visma.presentation.weather.overview.components.WeatherDayForecastRow
 
 @Composable
 fun WeatherForecastScreen(
@@ -73,7 +73,7 @@ fun WeatherForecastScreen(
 
                                     )
                                 }
-                                WeatherDayForecastRow(false, it.forecasts)
+                                WeatherForecastRow(false, it.forecasts)
                             }
                         }
                     }

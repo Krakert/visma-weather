@@ -1,4 +1,4 @@
-package com.visma.presentation.weather.overview.components
+package com.visma.presentation.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -26,7 +26,7 @@ import com.visma.presentation.weather.model.WeatherForecastItemDisplay
 @Preview
 @Composable
 fun PreviewWeatherDayForecastRow() {
-    WeatherDayForecastRow(
+    WeatherForecastRow(
         isLoading = true,
         listOf(
             WeatherForecastItemDisplay("9AM", "", DegreeFormatter().map("16")),
@@ -44,7 +44,7 @@ fun PreviewWeatherDayForecastRow() {
 }
 
 @Composable
-fun WeatherDayForecastRow(isLoading: Boolean, forecast: List<WeatherForecastItemDisplay>) {
+fun WeatherForecastRow(isLoading: Boolean, forecast: List<WeatherForecastItemDisplay>) {
     if (isLoading) {
         Box(
             modifier = Modifier
@@ -73,7 +73,7 @@ fun WeatherDayForecastRow(isLoading: Boolean, forecast: List<WeatherForecastItem
                         Row(
                         ) {
                             forecast.forEach {
-                                WeatherDayForecastItem(
+                                WeatherForecastRowItem(
                                     time = it.time, icon = it.icon, temp = it.temperature
                                 )
                             }

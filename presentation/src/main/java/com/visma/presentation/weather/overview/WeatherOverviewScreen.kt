@@ -24,10 +24,11 @@ import androidx.navigation.NavHostController
 import com.visma.presentation.OnDisplay
 import com.visma.presentation.OnError
 import com.visma.presentation.OnLoading
+import com.visma.presentation.components.WeatherForecastRow
 import com.visma.presentation.nav.Screen
 import com.visma.presentation.theme.BlueGradientBottom
 import com.visma.presentation.theme.BlueGradientTop
-import com.visma.presentation.weather.overview.components.WeatherDayForecastRow
+import com.visma.presentation.weather.overview.components.WeatherOverDateRow
 import com.visma.presentation.weather.overview.components.WeatherOverviewSummary
 import com.visma.presentation.weather.overview.components.WeatherOverviewTextRow
 import com.visma.presentation.weather.overview.components.WeatherSearchBar
@@ -71,10 +72,11 @@ fun WeatherOverviewScreen(navController: NavHostController, viewModel: WeatherOv
                     keyboardController?.hide()
                 }
             )
-            Spacer(modifier = Modifier.height(100.dp))
             // Overview of the weather
             when (val state = contentTodayState) {
                 is OnDisplay -> {
+                    WeatherOverDateRow(isLoading = isLoading, date = state.display.date)
+                    Spacer(modifier = Modifier.height(50.dp))
                     WeatherOverviewSummary(
                         isLoading = isLoading,
                         icon = state.display.icon,
@@ -100,7 +102,7 @@ fun WeatherOverviewScreen(navController: NavHostController, viewModel: WeatherOv
             // Forecast of upcoming hours
             when (val state = contentForecast) {
                 is OnDisplay -> {
-                    WeatherDayForecastRow(
+                    WeatherForecastRow(
                         isLoading = isLoading,
                         forecast = state.display.result)
                 }

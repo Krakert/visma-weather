@@ -1,4 +1,4 @@
-package com.visma.presentation.weather.overview.components
+package com.visma.presentation.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -22,7 +22,7 @@ import com.visma.presentation.theme.LocalDimensions
 import com.visma.presentation.theme.dimensions
 
 @Composable
-fun WeatherDayForecastItem(time: String, icon: String, temp: String) {
+fun WeatherForecastRowItem(time: String, icon: String, temp: String) {
     Box(
         modifier = Modifier.padding(
             horizontal = MaterialTheme.dimensions.spacingMedium,
@@ -69,5 +69,5 @@ fun WeatherDayForecastItem(time: String, icon: String, temp: String) {
 @Preview
 @Composable
 fun PreviewWeatherDayForecastItem() {
-    WeatherDayForecastItem("9AM", "", "16")
+    WeatherForecastRowItem("9AM", "", "16")
 }
