@@ -18,6 +18,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.visma.presentation.theme.BlueDayForecastItem
+import com.visma.presentation.theme.LocalDimensions
 import com.visma.presentation.theme.dimensions
 
 @Composable
@@ -36,7 +37,8 @@ fun WeatherDayForecastItem(time: String, icon: String, temp: String) {
                     horizontal = MaterialTheme.dimensions.spacingMedium,
                     vertical = MaterialTheme.dimensions.spacingExtraLarge
                 )
-                .width(75.dp), contentAlignment = Alignment.Center
+                .width(LocalDimensions.current.forecastItemWidth),
+            contentAlignment = Alignment.Center
         ) {
             Column(
                 horizontalAlignment = Alignment.CenterHorizontally

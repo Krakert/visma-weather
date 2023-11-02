@@ -27,7 +27,7 @@ fun WeatherOverviewSummary(isLoading: Boolean, icon: String, temp: String, desc:
         if (isLoading) {
             Box(
                 modifier = Modifier
-                    .size(height = 229.dp, width = 253.dp)
+                    .size(height = 230.dp, width = 250.dp)
                     .clip(LocalShapes.current.forecastRowShape)
                     .shimmerEffect()
             )

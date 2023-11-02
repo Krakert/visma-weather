@@ -16,6 +16,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.visma.presentation.extension.shimmerEffect
 import com.visma.presentation.theme.BlueDayForecastRow
+import com.visma.presentation.theme.LocalDimensions
 import com.visma.presentation.theme.LocalShapes
 import com.visma.presentation.theme.dimensions
 import com.visma.presentation.weather.formatter.DegreeFormatter
@@ -47,7 +48,7 @@ fun WeatherDayForecastRow(isLoading: Boolean, forecast: List<WeatherForecastItem
     if (isLoading) {
         Box(
             modifier = Modifier
-                .padding(start = 54.dp)
+                .padding(start = LocalDimensions.current.spacingForecastRow)
                 .fillMaxWidth()
                 .height(232.dp)
                 .clip(RoundedCornerShape(topStart = 24.dp, bottomStart = 24.dp))

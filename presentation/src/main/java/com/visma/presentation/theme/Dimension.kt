@@ -19,14 +19,15 @@ class Dimensions {
 }
 
 class CustomDimensions {
-
+    val spacingForecastRow: Dp = 54.dp
+    val forecastItemWidth: Dp = 75.dp
 }
 
-private val LocalMaterialDimensions = staticCompositionLocalOf { Dimensions() }
+private val localMaterialDimensions = staticCompositionLocalOf { Dimensions() }
 
 val LocalDimensions = staticCompositionLocalOf { CustomDimensions() }
 
 val MaterialTheme.dimensions: Dimensions
     @Composable
     @ReadOnlyComposable
-    get() = LocalMaterialDimensions.current
+    get() = localMaterialDimensions.current
