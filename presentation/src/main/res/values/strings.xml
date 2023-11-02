@@ -3,5 +3,5 @@
     <string name="txt_forecast">Next 24H</string>
     <string name="txt_upcoming_days"><![CDATA[Next 5 Days ->]]></string>
     <string name="txt_today">Today</string>
-    <string name="txt_forecast_14d">Forecast next 14 days</string>
+    <string name="txt_forecast_5d">Forecast next 5 days</string>
 </resources>

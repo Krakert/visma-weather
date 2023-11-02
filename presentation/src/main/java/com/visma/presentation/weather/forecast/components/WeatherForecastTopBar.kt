@@ -34,7 +34,7 @@ fun WeatherForecastTopBar(onClick: () -> Unit) {
                 )
             }
             Text(
-                text = stringResource(R.string.txt_forecast_14d),
+                text = stringResource(R.string.txt_forecast_5d),
                 style = MaterialTheme.typography.displayLarge
             )
         }
