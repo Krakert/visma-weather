@@ -19,8 +19,8 @@ Add the API key to the `local.properties` file in the android folder of the proj
 ## Screenshots
 
 <p float="center">
-	<img src="screenshot/screenshot_1.png" width="300" />
-	<img src="screenshot/screenshot_2.png" width="300" /> 
-	<img src="screenshot/screenshot_3.png" width="300" />
-	<img src="screenshot/screenshot_4.png" width="300" />
+	<img src="screenshots/screenshot_1.png" width="350" />
+	<img src="screenshots/screenshot_2.png" width="350" /> 
+	<img src="screenshots/screenshot_3.png" width="350" />
+	<img src="screenshots/screenshot_4.png" width="350" />
 </p>
