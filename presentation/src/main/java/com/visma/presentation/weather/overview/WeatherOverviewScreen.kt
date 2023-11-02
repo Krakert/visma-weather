@@ -28,7 +28,7 @@ import com.visma.presentation.components.WeatherForecastRow
 import com.visma.presentation.nav.Screen
 import com.visma.presentation.theme.BlueGradientBottom
 import com.visma.presentation.theme.BlueGradientTop
-import com.visma.presentation.weather.overview.components.WeatherOverDateRow
+import com.visma.presentation.weather.overview.components.WeatherOverviewDateRow
 import com.visma.presentation.weather.overview.components.WeatherOverviewSummary
 import com.visma.presentation.weather.overview.components.WeatherOverviewTextRow
 import com.visma.presentation.weather.overview.components.WeatherSearchBar
@@ -75,7 +75,7 @@ fun WeatherOverviewScreen(navController: NavHostController, viewModel: WeatherOv
             // Overview of the weather
             when (val state = contentTodayState) {
                 is OnDisplay -> {
-                    WeatherOverDateRow(isLoading = isLoading, date = state.display.date)
+                    WeatherOverviewDateRow(isLoading = isLoading, date = state.display.date)
                     Spacer(modifier = Modifier.height(50.dp))
                     WeatherOverviewSummary(
                         isLoading = isLoading,

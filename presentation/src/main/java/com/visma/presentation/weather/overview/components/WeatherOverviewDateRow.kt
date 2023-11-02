@@ -14,7 +14,7 @@ import androidx.compose.ui.unit.dp
 import com.visma.presentation.extension.shimmerEffect
 
 @Composable
-fun WeatherOverDateRow(isLoading: Boolean, date: String) {
+fun WeatherOverviewDateRow(isLoading: Boolean, date: String) {
     Row(modifier = Modifier.padding(horizontal = 24.dp)) {
         if (isLoading) {
             Box(
