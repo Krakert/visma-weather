@@ -43,6 +43,10 @@ class WeatherOverviewViewModel @Inject constructor(
         loadData("London")
     }
 
+    companion object {
+        const val COUNT_FORECAST_24H = 8
+    }
+
     fun loadData(city: String) {
         viewModelScope.launch {
             mutableIsLoading.emit(true)
@@ -65,7 +69,7 @@ class WeatherOverviewViewModel @Inject constructor(
 
     private fun fetchWeatherForecast(city: String) {
         viewModelScope.launch {
-            getForecastByCity(city, 8).onSuccess {
+            getForecastByCity(city, COUNT_FORECAST_24H).onSuccess {
                 mutableForecastFlow.emit(
                     OnDisplay(weatherOverviewForecastDisplayMapper.map(it))
                 )

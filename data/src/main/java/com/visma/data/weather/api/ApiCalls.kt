@@ -1,5 +1,6 @@
 package com.visma.data.weather.api
 
+import com.visma.data.component.DataConfig.COUNT_FORECAST_MAX
 import com.visma.data.component.net.model.ApiMethod
 import com.visma.data.component.net.model.ApiRequest
 import com.visma.data.component.net.model.Query
@@ -26,7 +27,7 @@ object ApiCalls {
         city: String,
         apiKey: String,
         unit: String = "metric",
-        cnt: Int = 40
+        cnt: Int = COUNT_FORECAST_MAX
     ) = ApiRequest<WeatherForecastTodayEntity>(
         method = ApiMethod.GET,
         path = "forecast",

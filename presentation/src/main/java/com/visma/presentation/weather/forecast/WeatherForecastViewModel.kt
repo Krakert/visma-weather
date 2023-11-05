@@ -25,9 +25,13 @@ class WeatherForecastViewModel @Inject constructor(
     private val mutableForecastFlow = MutableStateFlow<ContentState<WeatherForecastListDisplay>>(OnLoading)
     val weatherOverviewForecast: StateFlow<ContentState<WeatherForecastListDisplay>> = mutableForecastFlow
 
+    companion object {
+        const val COUNT_FORECAST_MAX = 40
+    }
+
     fun fetchWeatherForecast(city: String) {
         viewModelScope.launch {
-            getForecastByCity(city, 40).onSuccess {
+            getForecastByCity(city, COUNT_FORECAST_MAX).onSuccess {
                 delay(1000)
                 mutableForecastFlow.emit(
                     OnDisplay(weatherForecastDisplayMapper.map(it))
